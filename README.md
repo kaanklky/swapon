@@ -1,6 +1,6 @@
  Web server that built on go which dynamically create shell script to create swapfile on web request.
 
-Runing on: http://swapon.kaankolkoy.net/
+Running on: http://swapon.kaankolkoy.net/
 
 ## Usage
 To create 4GB swap memory on your computer, run:
