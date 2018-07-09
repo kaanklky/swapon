@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SwapON</title>
+
+    <meta name="author" content="Kaan K. Kölköy">
+    <meta name="description" content="Web server that built on go which dynamically create shell script to create swapfile on web request.">
+    <meta name="keywords" content="linux,server,memory,swap,shell,script">
 </head>
 
 <style>
@@ -44,7 +48,6 @@
         border-radius: 5px;
         font-family: monospace;
         font-size: 1rem;
-        min-width: 480px;
     }
 
     span {
@@ -59,8 +62,11 @@
         -ms-user-select: none;
         user-select: none;
     }
-    .link{
+    .link {
         padding-top: 10rem
+    }
+    .credit {
+        padding-top: 5rem;
     }
     a {
         color: white;
@@ -79,16 +85,28 @@
         </div>
         <p>If you need 512 MB of swap space, just type;</p>
         <div class="flex-item code">
-            <span unselectable="on">$ </span>curl http://swapon.kaankolkoy.net/512mb | bash
+            <span unselectable="on">$ </span>curl /512mb | bash
         </div>
         <p>If you need 8 GB of swap space, just type;</p>
         <div class="flex-item code">
-            <span unselectable="on">$ </span>curl http://swapon.kaankolkoy.net/8gb | bash
+            <span unselectable="on">$ </span>curl /8gb | bash
         </div>
-            <div class="link">
-                <a href="https://github.com/kaanklky/swapon">Source Code on Github</a>
-            </div>
+        <div class="link">
+            <a href="https://github.com/kaanklky/swapon">Source Code on Github</a>
+        </div>
+        <div class="credit">
+            Built with <a href="https://golang.org">Go</a> by <a href="https://github.com/kaanklky">Kaan K. Kölköy</a> &amp; designed by <a href="https://github.com/uyasarkocal">U. Yaşar Koçal</a>
+        </div>
     </div>
+
+    <script>
+        var server = document.location.href;
+        var blocks = document.querySelectorAll('.code');
+
+        [].forEach.call(blocks, function(block) {
+            block.childNodes[2].textContent = block.childNodes[2].textContent.replace("\/", server);
+        });
+    </script>
 </body>
 
 </html>
