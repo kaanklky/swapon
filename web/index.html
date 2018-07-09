@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SwapON</title>
+</head>
+
+<style>
+    body {
+        background: #2c2c54;
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        padding: 6rem;
+    }
+
+    .flex-container {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-flex-wrap: nowrap;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-align-content: stretch;
+        -ms-flex-line-pack: stretch;
+        align-content: stretch;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .code {
+        background: #474787;
+        padding: 1rem 3rem;
+        margin: 1rem;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 1rem;
+        min-width: 480px;
+    }
+
+    span {
+        color: rgba(255, 255, 255, .8);
+    }
+
+    p,
+    h1,
+    span {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .link{
+        padding-top: 10rem
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+</style>
+
+<body>
+    <div class="flex-container">
+        <div class="flex-item">
+            <h1>SwapON</h1>
+        </div>
+        <div class="flex-item">
+            <p>Swapon is an API for generating swap file configuration scripts dynamically, how awesome is that?</p>
+        </div>
+        <p>If you need 512 MB of swap space, just type;</p>
+        <div class="flex-item code">
+            <span unselectable="on">$ </span>curl http://swapon.kaankolkoy.net/512mb | bash
+        </div>
+        <p>If you need 8 GB of swap space, just type;</p>
+        <div class="flex-item code">
+            <span unselectable="on">$ </span>curl http://swapon.kaankolkoy.net/8gb | bash
+        </div>
+            <div class="link">
+                <a href="https://github.com/kaanklky/swapon">Source Code on Github</a>
+            </div>
+    </div>
+</body>
+
+</html>
