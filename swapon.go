@@ -25,7 +25,7 @@ sudo fallocate -l %s /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
-sudo echo '/swapfile swap swap sw 0 0' >> /etc/fstab`
+echo '/swapfile swap swap sw 0 0' | sudo tee --append /etc/fstab`
 
 	fmt.Fprintf(w, script, swapSize)
 }
