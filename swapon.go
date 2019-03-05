@@ -16,18 +16,37 @@ var Port = 4040
 var PortString = ":" + strconv.Itoa(Port)
 
 func swapScriptHandler(w http.ResponseWriter, r *http.Request) {
-	req := r.URL.Path[1:]
-	swapSize := strings.ToUpper(req[:len(req)-1])
+	mbInKb        := 1024
+	req           := r.URL.Path[1:]
+	swapSize, err := strconv.Atoi(req[:len(req) - 2])
+	sizeType   	  := req[len(req)-2:]
+
+	if err != nil {
+		fmt.Fprintf(w, "")
+	}
+
+	if sizeType == "gb" || sizeType == "GB" {
+		swapSize = swapSize * mbInKb
+	}
+
+	if sizeType == "tb" || sizeType == "TB" {
+		swapSize = swapSize * mbInKb * mbInKb
+	}
 
 	script := `#!/bin/sh
 
-sudo fallocate -l %s /swapfile
+echo 'Generating ` + r.URL.Path[1:] + ` file...'
+sudo dd if=/dev/zero of=/swapfile bs=1M count=` + strconv.Itoa(swapSize) + `
+echo 'Fixing permissions...'
 sudo chmod 600 /swapfile
+echo 'Setting generated file as swap...'
 sudo mkswap /swapfile
 sudo swapon /swapfile
-echo '/swapfile swap swap sw 0 0' | sudo tee --append /etc/fstab`
+echo 'Writing to fstab to make swap persistence...'
+echo '/swapfile swap swap sw 0 0' | sudo tee --append /etc/fstab
+echo 'Done!'`
 
-	fmt.Fprintf(w, script, swapSize)
+	fmt.Fprintf(w, script)
 }
 
 func main() {
